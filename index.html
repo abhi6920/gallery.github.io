@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Gallery</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .head {
+            text-align: center;
+            margin-top: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px auto; /* Center the gallery horizontally */
+            max-width: 1250px; /* Set maximum width for the gallery */
+            padding: 20px;
+            background-image: url('https://cdn.pixabay.com/photo/2016/03/27/07/32/clouds-1282314_1280.jpg');
+            background-size: cover;
+        }
+        .image-container {
+            flex: 1 0 calc(20% - 20px); /* Each image container takes 20% width with 20px margin */
+            margin: 10px;
+            padding: 10px;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform .3s ease-in-out;
+            cursor: pointer;
+        }
+        .image-container:hover {
+            transform: scale(1.1); 
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px; 
+        }
+        .image-container:nth-child(5n + 1) {
+            margin-left: 0;
+        }
+        .image-container:nth-child(n + 6) {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="head">My Gallery</h1>
+    <div class="gallery">
+        <!-- Images will be loaded here -->
+    </div>
+
+    <script>
+        // JSON data with image URLs
+        const images = [
+            {"image": "https://picsum.photos/200/300?image=0"},
+            {"image": "https://picsum.photos/200/300?image=1"},
+            {"image": "https://picsum.photos/200/300?image=2"},
+            {"image": "https://picsum.photos/200/300?image=3"},
+            {"image": "https://picsum.photos/200/300?image=4"},
+            {"image": "https://picsum.photos/200/300?image=5"},
+            {"image": "https://picsum.photos/200/300?image=6"},
+            {"image": "https://picsum.photos/200/300?image=7"},
+            {"image": "https://picsum.photos/200/300?image=8"},
+            {"image": "https://picsum.photos/200/300?image=9"},
+            {"image": "https://picsum.photos/200/300?image=10"},
+            {"image": "https://picsum.photos/200/300?image=11"},
+            {"image": "https://picsum.photos/200/300?image=12"},
+            {"image": "https://picsum.photos/200/300?image=13"},
+            {"image": "https://picsum.photos/200/300?image=14"},
+            {"image": "https://picsum.photos/200/300?image=15"},
+            {"image": "https://picsum.photos/200/300?image=16"},
+            {"image": "https://picsum.photos/200/300?image=17"},
+            {"image": "https://picsum.photos/200/300?image=18"},
+            {"image": "https://picsum.photos/200/300?image=19"},
+            {"image": "https://picsum.photos/200/300?image=20"},
+            {"image": "https://picsum.photos/200/300?image=25"},
+            {"image": "https://picsum.photos/200/300?image=22"},
+            {"image": "https://picsum.photos/200/300?image=23"},
+            {"image": "https://picsum.photos/200/300?image=24"},
+
+        ];
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const gallery = document.querySelector('.gallery');
+            images.forEach(image => {
+                const imageContainer = createImageContainer(image.image);
+                gallery.appendChild(imageContainer);
+            });
+        });
+
+        function createImageContainer(imageUrl) {
+            const imageContainer = document.createElement('div');
+            imageContainer.classList.add('image-container');
+
+            const img = document.createElement('img');
+            img.src = imageUrl; 
+            imageContainer.appendChild(img);
+            return imageContainer;
+        }
+    </script>
+</body>
+</html>
